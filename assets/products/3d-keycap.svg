@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="40" x2="1060" y2="880" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2440"/>
+      <stop offset="1" stop-color="#10162A"/>
+    </linearGradient>
+    <linearGradient id="key" x1="460" y1="280" x2="740" y2="590" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCE6F2"/>
+      <stop offset="1" stop-color="#A6B7CB"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="680" rx="240" ry="48" fill="#0A0F1C" fill-opacity=".62"/>
+  <path d="M450 344C450 304 482 272 522 272H678C718 272 750 304 750 344V564C750 604 718 636 678 636H522C482 636 450 604 450 564V344Z" fill="url(#key)"/>
+  <rect x="500" y="326" width="200" height="252" rx="34" fill="#8F9FB6"/>
+  <text x="600" y="478" text-anchor="middle" fill="#F5F8FC" font-family="Manrope, Arial, sans-serif" font-size="118" font-weight="700">P</text>
+</svg>

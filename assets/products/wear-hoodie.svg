@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="30" x2="1060" y2="870" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2338"/>
+      <stop offset="1" stop-color="#111928"/>
+    </linearGradient>
+    <pattern id="fabric" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#FFF" fill-opacity=".03"/>
+      <path d="M0 5H10" stroke="#000" stroke-opacity=".12" stroke-width=".6"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <path d="M470 258C492 224 534 204 600 204C666 204 708 224 730 258L776 314L748 390L688 364V664H512V364L452 390L424 314L470 258Z" fill="#DDE6F2"/>
+  <path d="M548 286C560 264 576 252 600 252C624 252 640 264 652 286L628 338H572L548 286Z" fill="#9AA9BF"/>
+  <rect x="520" y="426" width="160" height="70" rx="20" fill="#203154"/>
+  <path d="M520 520H680V664H520V520Z" fill="url(#fabric)"/>
+  <ellipse cx="600" cy="710" rx="250" ry="52" fill="#070C17" fill-opacity=".6"/>
+</svg>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Il Porto dei Pirati | Stampe 3D, Serigrafie e Vestiti Artigianali</title>
+  <meta name="description" content="Marketplace artigianale con stampe 3D personalizzate, serigrafie in tiratura limitata, t-shirt e felpe. Acquista online e sostieni progetti sociali locali." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0f1722" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Il Porto dei Pirati" />
+  <meta property="og:title" content="Il Porto dei Pirati | Stampe 3D, Serigrafie e Vestiti Artigianali" />
+  <meta property="og:description" content="Marketplace artigianale con stampe 3D personalizzate, serigrafie in tiratura limitata, t-shirt e felpe. Acquista online e sostieni progetti sociali locali." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Il Porto dei Pirati | Stampe 3D, Serigrafie e Vestiti Artigianali" />
+  <meta name="twitter:description" content="Marketplace artigianale con stampe 3D personalizzate, serigrafie in tiratura limitata, t-shirt e felpe. Acquista online e sostieni progetti sociali locali." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="home-page">
+
+  <header class="site-header topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__badge" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__title">Bootlegged Pirate</span>
+          <span class="brand__subtitle">Collettivo indipendente</span>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Apri menu" aria-controls="menuDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">≡</span>
+          <span>Menu</span>
+        </button>
+
+        <button class="icon-btn" id="cartBtn" type="button" aria-label="Apri carrello" aria-controls="cartDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">🛒</span>
+          <span>Carrello</span>
+          <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="page-shell home-main">
+    <section class="page-main">
+    <div class="hero hero--premium home-hero">
+      <div class="container hero__grid">
+        <div class="hero__card" data-reveal>
+          <p class="eyebrow">Marketplace indipendente</p>
+          <h1>Oggetti curati, tirature piccole, impatto reale.</h1>
+          <p>
+            Il Porto è un laboratorio creativo: stampiamo in 3D, produciamo serigrafie e capi in piccole serie.
+            Ogni pezzo nasce con attenzione ai materiali, al design e alla sostenibilità del progetto.
+          </p>
+          <ul class="hero-points" aria-label="Valori principali">
+            <li>Produzioni limitate</li>
+            <li>Autoproduzione locale</li>
+            <li>Qualità prima della quantità</li>
+          </ul>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="./stampe-3d.html">Vai a Stampe 3D</a>
+            <a class="btn" href="./serigrafie-vestiti.html">Vai a Serigrafie &amp; Vestiti</a>
+          </div>
+        </div>
+
+        <aside class="hero__aside hero__aside--premium" data-reveal data-reveal-delay="120">
+          <h2 class="aside__title">Rotta del mese</h2>
+          <p class="muted">Eventi, workshop e appuntamenti pubblici organizzati dal collettivo.</p>
+          <div class="event-banner" id="homeEventsList" aria-label="Eventi in programma"></div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="page-block home-featured" aria-label="Selezione editoriale">
+      <div class="container page-head page-head--center page-head--editorial" data-reveal>
+        <div>
+          <h2>Collezioni in Evidenza</h2>
+          <p class="muted">Una selezione curata dal laboratorio, tra utilità quotidiana e pezzi da edizione</p>
+        </div>
+      </div>
+
+      <div class="container editorial-grid" data-reveal data-reveal-delay="60" data-catalog="featured" data-limit="3"></div>
+    </div>
+
+    <div class="page-block page-block--category home-sections" data-home-section="3d">
+      <div class="container page-head page-head--center page-head--editorial" data-reveal>
+        <div>
+          <h2>Stampe 3D</h2>
+          <p class="muted">Oggetti, accessori, prototipi</p>
+        </div>
+      </div>
+
+      <div class="container scroller" aria-label="Preview prodotti Stampe 3D" data-reveal data-reveal-delay="60" data-catalog="stampe-3d" data-limit="3"></div>
+
+      <div class="container page-tail" data-reveal>
+        <a class="btn" href="./stampe-3d.html">Apri categoria Stampe 3D</a>
+      </div>
+    </div>
+
+    <div class="page-block page-block--category home-sections" data-home-section="serigrafie">
+      <div class="container page-head page-head--center page-head--editorial" data-reveal>
+        <div>
+          <h2>Serigrafie &amp; Vestiti</h2>
+          <p class="muted">Poster, t-shirt, felpe</p>
+        </div>
+      </div>
+
+      <div class="container scroller" aria-label="Preview prodotti Serigrafie e Vestiti" data-reveal data-reveal-delay="60" data-catalog="serigrafie-vestiti" data-limit="3"></div>
+
+      <div class="container page-tail" data-reveal>
+        <a class="btn" href="./serigrafie-vestiti.html">Apri Serigrafie &amp; Vestiti</a>
+      </div>
+    </div>
+    </section>
+  </main>
+
+  <footer class="site-footer footer">
+    <div class="container footer__grid">
+      <div>
+        <strong>Rotta chiara</strong>
+        <p class="muted">Pagamenti sicuri (checkout esterno) e spedizioni tracciate. Alcuni prodotti possono avere disponibilità limitata perché sono autoproduzioni.</p>
+      </div>
+      <div>
+        <strong>Impatto</strong>
+        <p class="muted">Una parte del ricavato finanzia attività sociali e iniziative di quartiere. Qui non si compra “solo” un prodotto: si alimenta una rete.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="drawer drawer--right" id="menuDrawer" aria-label="Menu" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Menu</h3>
+        <p class="drawer__subtitle">Navigazione rapida</p>
+      </div>
+      <button class="icon-btn" id="menuCloseBtn" type="button" aria-label="Chiudi menu">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <nav class="menu-list" aria-label="Navigazione principale">
+        <a class="menu-link" href="index.html"><span>Home</span><small>Sei qui</small></a>
+        <a class="menu-link" href="stampe-3d.html"><span>Stampe 3D</span><small>Pagina</small></a>
+        <a class="menu-link" href="serigrafie-vestiti.html"><span>Serigrafie &amp; Vestiti</span><small>Pagina</small></a>
+        <a class="menu-link" href="cart.html"><span>Carrello</span><small>Pagina</small></a>
+      </nav>
+      <p class="note">Il menu e il carrello sono condivisi su tutte le pagine.</p>
+    </div>
+  </aside>
+
+  <aside class="drawer drawer--right" id="cartDrawer" aria-label="Carrello" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Carrello</h3>
+        <p class="drawer__subtitle">Riepilogo ordine</p>
+      </div>
+      <button class="icon-btn" id="cartCloseBtn" type="button" aria-label="Chiudi carrello">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <div class="cart-list" id="cartItems"></div>
+      <p class="note" id="cartEmptyNote" hidden>Il carrello è vuoto. Aggiungi prodotti dalle categorie.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="sum"><span>Subtotale</span><b id="cartSubtotal">€ 0,00</b></div>
+      <div class="drawer__footer-actions">
+        <a class="btn" href="cart.html">Apri pagina carrello</a>
+        <button class="btn btn--danger" type="button" id="cartClearBtn">Svuota</button>
+      </div>
+      <p class="note">Checkout sicuro gestito tramite provider di pagamento esterno.</p>
+    </div>
+  </aside>
+
+
+  <script src="./js/catalog.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
