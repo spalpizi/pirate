@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrello Acquisti Online | Il Porto dei Pirati</title>
+  <meta name="description" content="Riepilogo carrello e subtotale ordine. Gestisci quantità, verifica i prodotti selezionati e prosegui con checkout sicuro." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0f1722" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Il Porto dei Pirati" />
+  <meta property="og:title" content="Carrello Acquisti Online | Il Porto dei Pirati" />
+  <meta property="og:description" content="Riepilogo carrello e subtotale ordine. Gestisci quantità, verifica i prodotti selezionati e prosegui con checkout sicuro." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Carrello Acquisti Online | Il Porto dei Pirati" />
+  <meta name="twitter:description" content="Riepilogo carrello e subtotale ordine. Gestisci quantità, verifica i prodotti selezionati e prosegui con checkout sicuro." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="cart-page">
+
+  <header class="site-header topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__badge" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__title">Il Porto dei Pirati</span>
+          <span class="brand__subtitle">Carrello</span>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Apri menu" aria-controls="menuDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">≡</span>
+          <span>Menu</span>
+        </button>
+
+        <button class="icon-btn" id="cartBtn" type="button" aria-label="Apri carrello" aria-controls="cartDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">🛒</span>
+          <span>Carrello</span>
+          <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="page-shell product-page cart-main-page">
+    <div class="container">
+      <div class="cart-layout cart-page-layout">
+        <div class="cart-main">
+          <header class="page-head">
+            <div>
+              <h2>Il tuo carrello</h2>
+              <p class="muted">Modifica quantita e controlla il subtotale.</p>
+            </div>
+          </header>
+
+          <div class="cart-list cart-list--page" id="cartPageItems"></div>
+          <p class="note" id="cartPageEmpty" hidden>Il carrello e vuoto.</p>
+        </div>
+
+        <aside class="cart-summary">
+          <p class="cart-summary__label">Riepilogo ordine</p>
+          <div class="sum"><span>Subtotale</span><b id="cartPageSubtotal">€ 0,00</b></div>
+          <div class="cart-summary__actions">
+            <a class="btn" href="./index.html">Continua lo shopping</a>
+            <button class="btn btn--danger" type="button" id="cartPageClearBtn">Svuota</button>
+            <button class="btn btn--primary" type="button" id="checkoutBtn">Checkout sicuro</button>
+          </div>
+          <p class="note">Checkout sicuro disponibile durante la conferma ordine.</p>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="site-footer footer">
+    <div class="container footer__grid">
+      <div>
+        <strong>Rotta chiara</strong>
+        <p class="muted">Pagamenti sicuri (checkout esterno) e spedizioni tracciate. Alcuni prodotti possono avere disponibilita limitata perche sono autoproduzioni.</p>
+      </div>
+      <div>
+        <strong>Impatto</strong>
+        <p class="muted">Una parte del ricavato finanzia attivita sociali e iniziative di quartiere. Qui non si compra solo un prodotto: si alimenta una rete.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="drawer drawer--right" id="menuDrawer" aria-label="Menu" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Menu</h3>
+        <p class="drawer__subtitle">Navigazione rapida</p>
+      </div>
+      <button class="icon-btn" id="menuCloseBtn" type="button" aria-label="Chiudi menu">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <nav class="menu-list" aria-label="Navigazione principale">
+        <a class="menu-link" href="index.html"><span>Home</span><small>Vai</small></a>
+        <a class="menu-link" href="./category.html?category=stampe-3d"><span>Stampe 3D</span><small>Pagina</small></a>
+        <a class="menu-link" href="./category.html?category=serigrafie-vestiti"><span>Serigrafie &amp; Vestiti</span><small>Pagina</small></a>
+        <a class="menu-link" href="cart.html"><span>Carrello</span><small>Sei qui</small></a>
+      </nav>
+      <p class="note">Il menu e il carrello sono condivisi su tutte le pagine.</p>
+    </div>
+  </aside>
+
+  <aside class="drawer drawer--right" id="cartDrawer" aria-label="Carrello" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Carrello</h3>
+        <p class="drawer__subtitle">Riepilogo ordine</p>
+      </div>
+      <button class="icon-btn" id="cartCloseBtn" type="button" aria-label="Chiudi carrello">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <div class="cart-list" id="cartItems"></div>
+      <p class="note" id="cartEmptyNote" hidden>Il carrello e vuoto. Aggiungi prodotti dalle categorie.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="sum"><span>Subtotale</span><b id="cartSubtotal">€ 0,00</b></div>
+      <div class="drawer__footer-actions">
+        <a class="btn" href="cart.html">Apri pagina carrello</a>
+        <button class="btn btn--danger" type="button" id="cartClearBtn">Svuota</button>
+      </div>
+      <p class="note">Checkout sicuro gestito tramite provider di pagamento esterno.</p>
+    </div>
+  </aside>
+
+
+  <script src="./js/catalog.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

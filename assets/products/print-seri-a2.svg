@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1080" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#182436"/>
+      <stop offset="1" stop-color="#101725"/>
+    </linearGradient>
+    <filter id="grain" x="0" y="0" width="1200" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0 .07"/>
+      </feComponentTransfer>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="328" y="138" width="544" height="624" rx="24" fill="#E8E1D0"/>
+  <rect x="362" y="172" width="476" height="556" rx="18" fill="#DCD2BC"/>
+  <circle cx="600" cy="440" r="166" fill="#0E1C34"/>
+  <path d="M496 470C544 386 660 364 734 420" stroke="#F0C975" stroke-width="26" stroke-linecap="round"/>
+  <path d="M462 538C518 620 654 632 754 560" stroke="#56E5D0" stroke-width="24" stroke-linecap="round"/>
+  <rect width="1200" height="900" filter="url(#grain)"/>
+</svg>

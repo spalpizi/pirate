@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="130" y1="20" x2="1070" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1B243A"/>
+      <stop offset="1" stop-color="#121829"/>
+    </linearGradient>
+    <pattern id="weave" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#000" fill-opacity=".03"/>
+      <path d="M0 7H14M7 0V14" stroke="#FFF" stroke-opacity=".05" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <path d="M408 286L492 224H708L792 286L742 384L676 358V648H524V358L458 384L408 286Z" fill="#E6EDF7"/>
+  <path d="M524 358H676V648H524V358Z" fill="url(#weave)"/>
+  <rect x="556" y="438" width="88" height="88" rx="16" fill="#192D51"/>
+  <circle cx="600" cy="482" r="24" fill="#56E5D0"/>
+  <ellipse cx="600" cy="700" rx="240" ry="48" fill="#070C17" fill-opacity=".58"/>
+</svg>

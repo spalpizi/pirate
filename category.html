@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stampe 3D Personalizzate Artigianali | Il Porto dei Pirati</title>
+  <meta name="description" content="Catalogo di stampe 3D artigianali: keycap, stand modulari e oggetti decorativi in PLA/PETG. Personalizzazione su richiesta, produzione in piccole serie." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0f1722" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Il Porto dei Pirati" />
+  <meta property="og:title" content="Stampe 3D Personalizzate Artigianali | Il Porto dei Pirati" />
+  <meta property="og:description" content="Catalogo di stampe 3D artigianali: keycap, stand modulari e oggetti decorativi in PLA/PETG. Personalizzazione su richiesta, produzione in piccole serie." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Stampe 3D Personalizzate Artigianali | Il Porto dei Pirati" />
+  <meta name="twitter:description" content="Catalogo di stampe 3D artigianali: keycap, stand modulari e oggetti decorativi in PLA/PETG. Personalizzazione su richiesta, produzione in piccole serie." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="category-page">
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get("category") === "serigrafie-vestiti" ? "serigrafie-vestiti" : "stampe-3d";
+      document.body.classList.add(id === "stampe-3d" ? "category-page--3d" : "category-page--serigrafie");
+    })();
+  </script>
+
+  <header class="site-header topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__badge" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__title">Il Porto dei Pirati</span>
+          <span class="brand__subtitle" data-category-brand-subtitle>Stampe 3D</span>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <button class="icon-btn" id="menuBtn" type="button" aria-label="Apri menu" aria-controls="menuDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">≡</span>
+          <span>Menu</span>
+        </button>
+
+        <button class="icon-btn" id="cartBtn" type="button" aria-label="Apri carrello" aria-controls="cartDrawer" aria-expanded="false">
+          <span class="icon" aria-hidden="true">🛒</span>
+          <span>Carrello</span>
+          <span class="cart-count" data-cart-count>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="page-shell category-main">
+    <section class="page-main">
+    <div class="hero">
+      <div class="container hero__grid">
+        <div class="hero__card">
+          <h1 data-category-hero-title>Stampe 3D</h1>
+          <p data-category-hero-description>
+            Pezzi utili, prototipi e piccoli oggetti “da ciurma”. Se ti serve una personalizzazione (misure,
+            colore, uso specifico) scrivici: qui il laboratorio è parte del progetto.
+          </p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#catalogo-3d" data-category-hero-cta><span data-category-hero-cta-label>Vai al catalogo</span></a>
+            <a class="btn" href="./index.html">Torna alla home</a>
+          </div>
+        </div>
+
+        <aside class="hero__aside">
+          <h2 class="aside__title" data-category-aside-title>Come lavoriamo</h2>
+          <dl class="kv" data-category-hero-meta>
+            <div class="kv__row"><dt>Materiali</dt><dd>PLA / PETG</dd></div>
+            <div class="kv__row"><dt>Personalizzazioni</dt><dd>Colori, misure, uso</dd></div>
+            <div class="kv__row"><dt>Prototipi</dt><dd>Iterazioni rapide</dd></div>
+          </dl>
+          <p class="muted" data-category-aside-note>Produzione artigianale con possibilità di personalizzazione su richiesta.</p>
+        </aside>
+      </div>
+    </div>
+
+    <div class="page-block" id="catalogo-3d" data-category-catalog-block>
+      <div class="container page-head page-head--center">
+        <div>
+          <h2 data-category-catalog-title>Catalogo</h2>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="product-grid" data-category-grid data-catalog="stampe-3d" data-filters="off"></div>
+
+      </div>
+    </div>
+    </section>
+  </main>
+
+
+  <footer class="site-footer footer">
+    <div class="container footer__grid">
+      <div>
+        <strong>Rotta chiara</strong>
+        <p class="muted">Pagamenti sicuri (checkout esterno) e spedizioni tracciate. Alcuni prodotti possono avere disponibilità limitata perché sono autoproduzioni.</p>
+      </div>
+      <div>
+        <strong>Impatto</strong>
+        <p class="muted">Una parte del ricavato finanzia attività sociali e iniziative di quartiere. Qui non si compra “solo” un prodotto: si alimenta una rete.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="drawer drawer--right" id="menuDrawer" aria-label="Menu" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Menu</h3>
+        <p class="drawer__subtitle">Navigazione rapida</p>
+      </div>
+      <button class="icon-btn" id="menuCloseBtn" type="button" aria-label="Chiudi menu">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <nav class="menu-list" aria-label="Navigazione principale">
+        <a class="menu-link" href="index.html"><span>Home</span><small>Vai</small></a>
+        <a class="menu-link" href="./category.html?category=stampe-3d" data-category-link="stampe-3d"><span>Stampe 3D</span><small>Sei qui</small></a>
+        <a class="menu-link" href="./category.html?category=serigrafie-vestiti" data-category-link="serigrafie-vestiti"><span>Serigrafie &amp; Vestiti</span><small>Pagina</small></a>
+        <a class="menu-link" href="cart.html"><span>Carrello</span><small>Pagina</small></a>
+      </nav>
+      <p class="note">Il menu e il carrello sono condivisi su tutte le pagine.</p>
+    </div>
+  </aside>
+
+  <aside class="drawer drawer--right" id="cartDrawer" aria-label="Carrello" aria-hidden="true">
+    <div class="drawer__header">
+      <div class="drawer__headcopy">
+        <h3 class="drawer__title">Carrello</h3>
+        <p class="drawer__subtitle">Riepilogo ordine</p>
+      </div>
+      <button class="icon-btn" id="cartCloseBtn" type="button" aria-label="Chiudi carrello">
+        <span class="icon" aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      <div class="cart-list" id="cartItems"></div>
+      <p class="note" id="cartEmptyNote" hidden>Il carrello è vuoto. Aggiungi prodotti dalle categorie.</p>
+    </div>
+
+    <div class="drawer__footer">
+      <div class="sum"><span>Subtotale</span><b id="cartSubtotal">€ 0,00</b></div>
+      <div class="drawer__footer-actions">
+        <a class="btn" href="cart.html">Apri pagina carrello</a>
+        <button class="btn btn--danger" type="button" id="cartClearBtn">Svuota</button>
+      </div>
+      <p class="note">Checkout sicuro gestito tramite provider di pagamento esterno.</p>
+    </div>
+  </aside>
+
+
+  <script src="./data/categories.js"></script>
+  <script src="./js/category-page.js"></script>
+  <script src="./js/catalog.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
