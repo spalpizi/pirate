@@ -1024,6 +1024,7 @@ body[data-product-id] .qty-stepper button:hover{
 .drawer.is-open{
   opacity: 1;
   pointer-events: auto;
+  transform: translateX(0);
 }
 .drawer--left{
   left: 0;
@@ -1035,7 +1036,6 @@ body[data-product-id] .qty-stepper button:hover{
   border-left: 1px solid rgba(255,255,255,.10);
   transform: translateX(108%);
 }
-.drawer.is-open{ transform: translateX(0); }
 .drawer .menu-link,
 .drawer .cart-item{
   opacity: 0;

@@ -1,5 +1,7 @@
 // Shared UI + cart (with variants) (vanilla JS)
 (function () {
+  if (window.__BP_SHARED_APP_INITIALIZED__) return;
+  window.__BP_SHARED_APP_INITIALIZED__ = true;
   // ---------------- Catalog ----------------
   const FALLBACK_CATALOG = {
     "3d-gyro-v1": { name: "Giroscopio decorativo — PLA", priceEUR: 19.90, url: "./product.html?id=3d-gyro-v1" },
@@ -81,15 +83,32 @@
     paper: "Carta"
   };
 
-  const HOME_EVENTS = [
-    { date: "12 Apr", title: "Open Lab: Stampe 3D", meta: "18:30 • Spazio Porto", status: "Aperto" },
-    { date: "19 Apr", title: "Workshop Serigrafia Base", meta: "16:00 • Prenotazione", status: "Posti limitati" },
-    { date: "26 Apr", title: "Mercatino Autoproduzioni", meta: "11:00-20:00 • Cortile", status: "Ingresso libero" }
+  const FALLBACK_HOME_EVENTS = [
+    { dateLabel: "12 Apr", title: "Open Lab: Stampe 3D", period: "18:30 • Spazio Porto", status: "Aperto", published: true, sortOrder: 10 },
+    { dateLabel: "19 Apr", title: "Workshop Serigrafia Base", period: "16:00 • Prenotazione", status: "Posti limitati", published: true, sortOrder: 20 },
+    { dateLabel: "26 Apr", title: "Mercatino Autoproduzioni", period: "11:00-20:00 • Cortile", status: "Ingresso libero", published: true, sortOrder: 30 }
   ];
 
   function formatEUR(value) {
     return new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" }).format(value);
   }
+
+  function loadStaticJsonSync(path) {
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", path, false);
+      xhr.send(null);
+      if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 0) {
+        return JSON.parse(xhr.responseText || "null");
+      }
+    } catch {
+      // no-op
+    }
+    return null;
+  }
+
+  const externalEvents = loadStaticJsonSync("./data/events.json");
+  const HOME_EVENTS = Array.isArray(externalEvents) && externalEvents.length ? externalEvents : FALLBACK_HOME_EVENTS;
 
   function escapeHtml(str) {
     return String(str).replace(/[&<>"']/g, (ch) => ({
@@ -105,24 +124,30 @@
   }
 
   // ---------------- Cart (line items with variants) ----------------
-  const CART_KEY_V2 = "cart_v2"; // Array<{ id: string, variant: object, qty: number }>
-  const CART_KEY_V1 = "cart_v1"; // Legacy: { [productId]: qty }
+  const CART_KEY_V2 = "cart_v2_session"; // Array<{ id: string, variant: object, qty: number }>
+  const CART_KEY_V1 = "cart_v1";
   const CART_WINDOW_FALLBACK_KEY = "bp_cart_v2";
-  const CART_URL_PARAM = "_cart";
-  const USE_FILE_URL_FALLBACK = window.location.protocol === "file:";
-  const CART_CLEARED_TS_KEY = "bp_cart_cleared_at";
+  const CART_SESSION_BOOT_KEY = "bp_cart_session_booted";
 
-  function safeLocalGet(key) {
+  function safeLocalRemove(key) {
     try {
-      return localStorage.getItem(key);
+      localStorage.removeItem(key);
+    } catch {
+      // no-op
+    }
+  }
+
+  function safeSessionGet(key) {
+    try {
+      return sessionStorage.getItem(key);
     } catch {
       return null;
     }
   }
 
-  function safeLocalSet(key, value) {
+  function safeSessionSet(key, value) {
     try {
-      localStorage.setItem(key, value);
+      sessionStorage.setItem(key, value);
       return true;
     } catch {
       return false;
@@ -153,36 +178,29 @@
     }
   }
 
-  function toBase64Url(str) {
-    const bytes = encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-      String.fromCharCode(parseInt(p1, 16))
-    );
-    return btoa(bytes).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-  }
-
-  function fromBase64Url(str) {
-    const padded = str + "===".slice((str.length + 3) % 4);
-    const b64 = padded.replace(/-/g, "+").replace(/_/g, "/");
-    const bytes = atob(b64);
-    const pct = Array.from(bytes, (ch) => "%" + ch.charCodeAt(0).toString(16).padStart(2, "0")).join("");
-    return decodeURIComponent(pct);
-  }
-
   function normalizeCartItems(arr) {
     if (!Array.isArray(arr)) return [];
-    return arr
-      .map(it => ({
+    const merged = new Map();
+    arr.forEach((it) => {
+      const normalized = {
         id: String(it.id || ""),
         variant: normalizeVariant(it.variant || {}),
         qty: Math.max(1, Number(it.qty || 1))
-      }))
-      .filter(it => it.id && CATALOG[it.id]);
+      };
+      if (!normalized.id || !CATALOG[normalized.id]) return;
+
+      const key = lineKey(normalized.id, normalized.variant);
+      const existing = merged.get(key);
+      if (existing) {
+        existing.qty += normalized.qty;
+        return;
+      }
+      merged.set(key, normalized);
+    });
+    return Array.from(merged.values());
   }
 
-  function updateInternalCartLinks(items) {
-    if (!USE_FILE_URL_FALLBACK) return;
-    const normalized = normalizeCartItems(items);
-    const token = normalized.length ? toBase64Url(JSON.stringify(normalized)) : "";
+  function updateInternalCartLinks() {
     document.querySelectorAll("a[href]").forEach((a) => {
       const href = a.getAttribute("href");
       if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:")) return;
@@ -194,59 +212,19 @@
         return;
       }
       if (!/\.html$/i.test(url.pathname)) return;
-
-      if (token) url.searchParams.set(CART_URL_PARAM, token);
-      else url.searchParams.delete(CART_URL_PARAM);
+      url.searchParams.delete("_cart");
 
       a.setAttribute("href", url.pathname + url.search + url.hash);
     });
   }
 
-  function readCartFromUrlParam() {
-    if (!USE_FILE_URL_FALLBACK) return null;
+  function clearLegacyCartUrlParam() {
+    if (!window.history.replaceState) return;
     try {
       const url = new URL(window.location.href);
-      const token = url.searchParams.get(CART_URL_PARAM);
-      if (!token) return null;
-      const decoded = fromBase64Url(token);
-      const parsed = JSON.parse(decoded);
-      return normalizeCartItems(parsed);
-    } catch {
-      return null;
-    }
-  }
-
-  function clearCartUrlParam() {
-    if (!USE_FILE_URL_FALLBACK || !window.history.replaceState) return;
-    try {
-      const url = new URL(window.location.href);
-      if (!url.searchParams.has(CART_URL_PARAM)) return;
-      url.searchParams.delete(CART_URL_PARAM);
+      if (!url.searchParams.has("_cart")) return;
+      url.searchParams.delete("_cart");
       window.history.replaceState(null, "", url.pathname + url.search + url.hash);
-    } catch {
-      // no-op
-    }
-  }
-
-  function getClearedAt() {
-    try {
-      return Number(sessionStorage.getItem(CART_CLEARED_TS_KEY) || "0") || 0;
-    } catch {
-      return 0;
-    }
-  }
-
-  function markCartCleared() {
-    try {
-      sessionStorage.setItem(CART_CLEARED_TS_KEY, String(Date.now()));
-    } catch {
-      // no-op
-    }
-  }
-
-  function clearCartClearedMark() {
-    try {
-      sessionStorage.removeItem(CART_CLEARED_TS_KEY);
     } catch {
       // no-op
     }
@@ -264,6 +242,17 @@
     return out;
   }
 
+  function bootstrapCartSession() {
+    if (safeSessionGet(CART_SESSION_BOOT_KEY)) return;
+    safeSessionSet(CART_SESSION_BOOT_KEY, "1");
+    safeSessionSet(CART_KEY_V2, "[]");
+    safeLocalRemove(CART_KEY_V2);
+    safeLocalRemove(CART_KEY_V1);
+    writeWindowCartRaw("[]");
+    clearLegacyCartUrlParam();
+    updateInternalCartLinks();
+  }
+
   function lineKey(id, variant) {
     const v = normalizeVariant(variant);
     const keys = Object.keys(v).sort();
@@ -273,7 +262,7 @@
 
   function readCartV2() {
     try {
-      const raw = safeLocalGet(CART_KEY_V2) || readWindowCartRaw();
+      const raw = safeSessionGet(CART_KEY_V2) || readWindowCartRaw();
       if (!raw) return null;
       return normalizeCartItems(JSON.parse(raw));
     } catch {
@@ -284,60 +273,15 @@
   function writeCartV2(items) {
     const normalized = normalizeCartItems(items);
     const raw = JSON.stringify(normalized);
-    safeLocalSet(CART_KEY_V2, raw);
+    safeSessionSet(CART_KEY_V2, raw);
     writeWindowCartRaw(raw);
-    if (normalized.length > 0) clearCartClearedMark();
-    updateInternalCartLinks(normalized);
-  }
-
-  function migrateFromV1IfNeeded() {
-    const v2 = readCartV2();
-    if (v2 && v2.length >= 0) return; // already migrated (even empty)
-
-    // Try legacy
-    let legacy = null;
-    try {
-      legacy = JSON.parse(safeLocalGet(CART_KEY_V1) || "null");
-    } catch { legacy = null; }
-
-    if (!legacy || typeof legacy !== "object") {
-      writeCartV2([]);
-      return;
-    }
-
-    const items = [];
-    for (const [id, qtyRaw] of Object.entries(legacy)) {
-      if (!CATALOG[id]) continue;
-      const qty = Math.max(1, Number(qtyRaw || 1));
-      const variant = DEFAULT_VARIANTS[id] || {};
-      items.push({ id, variant: normalizeVariant(variant), qty });
-    }
-    writeCartV2(items);
+    updateInternalCartLinks();
   }
 
   function readCart() {
-    migrateFromV1IfNeeded();
+    bootstrapCartSession();
     return readCartV2() || [];
   }
-
-  (function hydrateCartFromUrlIfNeeded() {
-    const fromUrl = readCartFromUrlParam();
-    if (!fromUrl || !fromUrl.length) return;
-    const current = readCartV2() || [];
-
-    // If user explicitly cleared cart in this tab, ignore stale URL payloads.
-    if (getClearedAt() > 0 && current.length === 0) {
-      clearCartUrlParam();
-      return;
-    }
-
-    const merged = current.slice();
-    for (const it of fromUrl) {
-      upsertLine(merged, it.id, it.variant, it.qty);
-    }
-    writeCartV2(merged);
-    clearCartUrlParam();
-  })();
 
   function cartCount(items) {
     return items.reduce((sum, it) => sum + (it.qty || 0), 0);
@@ -388,9 +332,7 @@
   }
 
   function clearCart() {
-    markCartCleared();
     writeCartV2([]);
-    clearCartUrlParam();
     renderAllCartUI();
   }
 
@@ -411,33 +353,26 @@
     const list = document.getElementById("homeEventsList");
     if (!list) return;
     list.innerHTML = "";
-    for (const ev of HOME_EVENTS) {
+    const events = HOME_EVENTS
+      .filter((ev) => ev && ev.published !== false)
+      .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+
+    for (const ev of events) {
       const item = document.createElement("article");
       item.className = "event-item";
+      const date = ev.dateLabel || ev.date || "";
+      const meta = ev.period || ev.meta || ev.description || "";
+      const status = ev.status || (ev.published === false ? "Bozza" : "Attivo");
       item.innerHTML = `
-        <p class="event-item__date">${escapeHtml(ev.date)}</p>
+        <p class="event-item__date">${escapeHtml(date)}</p>
         <div>
           <h3 class="event-item__title">${escapeHtml(ev.title)}</h3>
-          <p class="event-item__meta">${escapeHtml(ev.meta)}</p>
+          <p class="event-item__meta">${escapeHtml(meta)}</p>
         </div>
-        <span class="event-item__tag">${escapeHtml(ev.status)}</span>
+        <span class="event-item__tag">${escapeHtml(status)}</span>
       `;
       list.appendChild(item);
     }
-  }
-
-  function setCurrentMenuLink() {
-    const current = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".menu-link[href]").forEach((link) => {
-      const href = link.getAttribute("href") || "";
-      if (!href || href.startsWith("#")) return;
-      const target = href.split("?")[0].split("#")[0].split("/").pop() || "index.html";
-      const isCurrent = target === current;
-      link.classList.toggle("is-current", isCurrent);
-      if (!isCurrent) return;
-      const small = link.querySelector("small");
-      if (small) small.textContent = "Sei qui";
-    });
   }
 
   // ---------------- Drawers ----------------
@@ -557,7 +492,12 @@
       const href = link.getAttribute("href");
       if (!href) return;
 
-      const url = new URL(href, window.location.href);
+      let url;
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
       const isCurrent = menuKey(url) === current;
 
       if (isCurrent) {
@@ -787,43 +727,7 @@
   function renderCartDrawer() {
     if (!cartItemsEl || !cartSubtotalEl) return;
     const items = readCart();
-
-    cartItemsEl.innerHTML = "";
-    const empty = items.length === 0;
-    if (cartEmptyNote) cartEmptyNote.hidden = !empty;
-
-    for (const it of items) {
-      const p = CATALOG[it.id];
-      if (!p) continue;
-
-      const key = lineKey(it.id, it.variant);
-      const url = productUrlForPage(it.id);
-      const price = formatEUR(p.priceEUR);
-      const line = formatEUR(p.priceEUR * it.qty);
-      const vSum = variantSummary(it.variant);
-
-      const div = document.createElement("div");
-      div.className = "cart-item";
-      div.innerHTML = `
-        <div class="cart-item__main">
-          <div class="cart-item__top">
-            <h4><a href="${url}">${escapeHtml(p.name)}</a></h4>
-            <b class="cart-item__line">${escapeHtml(line)}</b>
-          </div>
-          <div class="meta">${escapeHtml(vSum || "Configurazione standard")}</div>
-          <div class="meta meta--sub">${escapeHtml(price)} cad.</div>
-        </div>
-        <div class="qty">
-          <button type="button" data-cart-remove="${escapeHtml(key)}" aria-label="Rimuovi">×</button>
-          <button type="button" data-cart-dec="${escapeHtml(key)}" aria-label="Diminuisci">−</button>
-          <span>${it.qty}</span>
-          <button type="button" data-cart-inc="${escapeHtml(key)}" aria-label="Aumenta">+</button>
-        </div>
-      `;
-      cartItemsEl.appendChild(div);
-    }
-
-    cartSubtotalEl.textContent = formatEUR(cartSubtotal(items));
+    renderCartList(items, cartItemsEl, cartEmptyNote, cartSubtotalEl);
     renderCartCounts();
   }
 
@@ -835,46 +739,56 @@
   const cartPageEmpty = document.getElementById("cartPageEmpty");
   const cartPageClearBtn = document.getElementById("cartPageClearBtn");
 
+  function buildCartItemMarkup(item) {
+    const product = CATALOG[item.id];
+    if (!product) return null;
+
+    const key = lineKey(item.id, item.variant);
+    const url = productUrlForPage(item.id);
+    const price = formatEUR(product.priceEUR);
+    const line = formatEUR(product.priceEUR * item.qty);
+    const vSum = variantSummary(item.variant);
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <div class="cart-item__main">
+        <div class="cart-item__top">
+          <h4><a href="${url}">${escapeHtml(product.name)}</a></h4>
+          <b class="cart-item__line">${escapeHtml(line)}</b>
+        </div>
+        <div class="meta">${escapeHtml(vSum || "Configurazione standard")}</div>
+        <div class="meta meta--sub">${escapeHtml(price)} cad.</div>
+      </div>
+      <div class="qty">
+        <button type="button" data-cart-remove="${escapeHtml(key)}" aria-label="Rimuovi">×</button>
+        <button type="button" data-cart-dec="${escapeHtml(key)}" aria-label="Diminuisci">−</button>
+        <span>${item.qty}</span>
+        <button type="button" data-cart-inc="${escapeHtml(key)}" aria-label="Aumenta">+</button>
+      </div>
+    `;
+    return div;
+  }
+
+  function renderCartList(items, container, emptyNoteEl, subtotalEl) {
+    if (!container || !subtotalEl) return;
+
+    container.innerHTML = "";
+    const empty = items.length === 0;
+    if (emptyNoteEl) emptyNoteEl.hidden = !empty;
+
+    items.forEach((item) => {
+      const el = buildCartItemMarkup(item);
+      if (el) container.appendChild(el);
+    });
+
+    subtotalEl.textContent = formatEUR(cartSubtotal(items));
+  }
+
   function renderCartPage() {
     if (!cartPageItems || !cartPageSubtotal) return;
     const items = readCart();
-
-    cartPageItems.innerHTML = "";
-    const empty = items.length === 0;
-    if (cartPageEmpty) cartPageEmpty.hidden = !empty;
-
-    for (const it of items) {
-      const p = CATALOG[it.id];
-      if (!p) continue;
-
-      const key = lineKey(it.id, it.variant);
-      const url = productUrlForPage(it.id);
-      const price = formatEUR(p.priceEUR);
-      const line = formatEUR(p.priceEUR * it.qty);
-      const vSum = variantSummary(it.variant);
-
-      const div = document.createElement("div");
-      div.className = "cart-item";
-      div.innerHTML = `
-        <div class="cart-item__main">
-          <div class="cart-item__top">
-            <h4><a href="${url}">${escapeHtml(p.name)}</a></h4>
-            <b class="cart-item__line">${escapeHtml(line)}</b>
-          </div>
-          <div class="meta">${escapeHtml(vSum || "Configurazione standard")}</div>
-          <div class="meta meta--sub">${escapeHtml(price)} cad.</div>
-        </div>
-        <div class="qty">
-          <button type="button" data-cart-remove="${escapeHtml(key)}" aria-label="Rimuovi">×</button>
-          <button type="button" data-cart-dec="${escapeHtml(key)}" aria-label="Diminuisci">−</button>
-          <span>${it.qty}</span>
-          <button type="button" data-cart-inc="${escapeHtml(key)}" aria-label="Aumenta">+</button>
-        </div>
-      `;
-      cartPageItems.appendChild(div);
-    }
-
-    cartPageSubtotal.textContent = formatEUR(cartSubtotal(items));
+    renderCartList(items, cartPageItems, cartPageEmpty, cartPageSubtotal);
     renderCartCounts();
   }
 
@@ -902,16 +816,14 @@
   });
 
   function renderAllCartUI() {
-    const items = readCart();
     renderCartCounts();
     renderCartDrawer();
     renderCartPage();
-    updateInternalCartLinks(items);
+    updateInternalCartLinks();
   }
 
   // Initial render
   renderAllCartUI();
   renderHomeEvents();
-  setCurrentMenuLink();
 
 })();

@@ -1,0 +1,41 @@
+[
+  {
+    "id": "open-lab-stampe-3d-aprile",
+    "title": "Open Lab: Stampe 3D",
+    "description": "Sessione aperta per vedere materiali, test e prototipi in lavorazione.",
+    "image": "",
+    "dateLabel": "12 Apr",
+    "period": "18:30 • Spazio Porto",
+    "status": "Aperto",
+    "ctaLabel": "",
+    "ctaUrl": "",
+    "published": true,
+    "sortOrder": 10
+  },
+  {
+    "id": "workshop-serigrafia-base-aprile",
+    "title": "Workshop Serigrafia Base",
+    "description": "Introduzione pratica alla serigrafia con prenotazione richiesta.",
+    "image": "",
+    "dateLabel": "19 Apr",
+    "period": "16:00 • Prenotazione",
+    "status": "Posti limitati",
+    "ctaLabel": "",
+    "ctaUrl": "",
+    "published": true,
+    "sortOrder": 20
+  },
+  {
+    "id": "mercatino-autoproduzioni-aprile",
+    "title": "Mercatino Autoproduzioni",
+    "description": "Giornata aperta dedicata a produzioni indipendenti e materiali del collettivo.",
+    "image": "",
+    "dateLabel": "26 Apr",
+    "period": "11:00-20:00 • Cortile",
+    "status": "Ingresso libero",
+    "ctaLabel": "",
+    "ctaUrl": "",
+    "published": true,
+    "sortOrder": 30
+  }
+]
