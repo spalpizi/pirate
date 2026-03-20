@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | Il Porto dei Pirati</title>
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body class="admin-body admin-body--auth">
+  <main class="admin-auth">
+    <section class="admin-panel admin-panel--auth">
+      <p class="admin-kicker">Area amministrativa</p>
+      <h1>Accesso dashboard</h1>
+      <p class="admin-muted">Login locale temporaneo. Questa area richiede l’avvio del server Python del progetto.</p>
+
+      <form id="adminLoginForm" class="admin-form" novalidate>
+        <label class="admin-field">
+          <span>Username</span>
+          <input type="text" name="username" autocomplete="username" required />
+        </label>
+
+        <label class="admin-field">
+          <span>Password</span>
+          <input type="password" name="password" autocomplete="current-password" required />
+        </label>
+
+        <button class="admin-btn admin-btn--primary" type="submit">Accedi</button>
+        <p class="admin-feedback" id="loginFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="./login.js"></script>
+</body>
+</html>

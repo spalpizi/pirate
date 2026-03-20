@@ -1,4 +1,6 @@
 (function () {
+  if (window.__BP_PRODUCT_PAGE_INITIALIZED__) return;
+  window.__BP_PRODUCT_PAGE_INITIALIZED__ = true;
   const DATA_URL = "./data/products.json";
 
   const STATUS_META = {
@@ -23,6 +25,12 @@
 
   function formatEUR(value) {
     return new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" }).format(Number(value || 0));
+  }
+
+  function mediaStyleAttr(image) {
+    const src = String(image || "").trim();
+    if (!src) return "";
+    return ` style="background-image: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.03)), url('${escapeHtml(src)}');"`;
   }
 
   function loadProductsSync(url) {
@@ -55,13 +63,18 @@
     return statusInfo(product).disabled || product.available === false;
   }
 
+  function isPublicProduct(product) {
+    return !!product && product.published !== false;
+  }
+
   function readProducts() {
     if (Array.isArray(window.__PRODUCTS_DATA) && window.__PRODUCTS_DATA.length) {
       return window.__PRODUCTS_DATA;
     }
     const loaded = loadProductsSync(DATA_URL);
-    window.__PRODUCTS_DATA = loaded;
-    return loaded;
+    const publicProducts = loaded.filter(isPublicProduct);
+    window.__PRODUCTS_DATA = publicProducts;
+    return publicProducts;
   }
 
   function updateHead(product) {
@@ -148,7 +161,7 @@
       return `
         <article class="card">
           <a href="./product.html?id=${escapeHtml(p.id)}" aria-label="Apri ${escapeHtml(p.name)}">
-            <div class="thumb ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}"><span class="tag">${escapeHtml(p.cardTag || "PROD")}</span></div>
+            <div class="thumb ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}"${mediaStyleAttr(p.image)}><span class="tag">${escapeHtml(p.cardTag || "PROD")}</span></div>
           </a>
           <h3 class="card__title"><a href="./product.html?id=${escapeHtml(p.id)}">${escapeHtml(p.name)}</a></h3>
           <p class="card__desc">${escapeHtml(p.cardDescription || p.description || "")}</p>
@@ -215,7 +228,7 @@
       <div class="page-block">
         <div class="container product-layout">
           <div class="gallery">
-            <div class="gallery__img ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}" aria-label="Immagine prodotto"></div>
+            <div class="gallery__img ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}" aria-label="Immagine prodotto"${mediaStyleAttr(product.image)}></div>
             <p class="note">${escapeHtml(product.description || "Galleria prodotto con immagine principale e dettagli della lavorazione.")}</p>
           </div>
 

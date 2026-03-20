@@ -1,47 +1,5 @@
 [
   {
-    "id": "3d-gyro-v1",
-    "name": "Giroscopio decorativo — PLA",
-    "slug": "giroscopio-decorativo-pla",
-    "category": "stampe-3d",
-    "categoryLabel": "Stampe 3D",
-    "price": 19.9,
-    "currency": "EUR",
-    "url": "./product.html?id=3d-gyro-v1",
-    "image": "./assets/products/photos/3d-gyro-v1-main.jpg",
-    "gallery": ["./assets/products/photos/3d-gyro-v1-main.jpg"],
-    "thumbClass": "thumb--img-gyro",
-    "thumbTypeClass": "thumb--3d",
-    "cardTag": "3D",
-    "badge": "Decor",
-    "badges": ["3D", "PLA", "Decor"],
-    "badgesStandard": ["new", "custom"],
-    "featured": false,
-    "featuredTag": "3D Studio",
-    "available": true,
-    "status": "available",
-    "stockQty": 12,
-    "leadTimeDays": 2,
-    "sortOrder": 20,
-    "related": ["3d-stand-v1", "3d-keycap-v1"],
-    "cardDescription": "Oggetto cinetico stampato in 3D. Vari colori su richiesta.",
-    "description": "Oggetto cinetico stampato in 3D per decorazione e scrivania.",
-    "lead": "Oggetto cinetico stampato in 3D, ideale come decorazione o pezzo da scrivania.",
-    "details": "Pezzo artigianale in PLA con personalizzazione colore e scala su richiesta.",
-    "seoTitle": "Giroscopio decorativo PLA stampato 3D | Il Porto dei Pirati",
-    "seoDescription": "Giroscopio decorativo stampato in 3D in PLA con vari colori e personalizzazione su richiesta.",
-    "variants": [
-      { "key": "material", "label": "Materiale", "default": "PLA", "options": ["PLA", "PETG"] },
-      { "key": "color", "label": "Colore", "default": "Nero", "options": ["Nero", "Bianco", "Rosso", "Blu"] }
-    ],
-    "specs": [
-      { "label": "Materiale", "value": "PLA" },
-      { "label": "Dimensioni", "value": "~8–10 cm (variabile)" },
-      { "label": "Finitura", "value": "Layer visibili, post-process su richiesta" },
-      { "label": "Personalizzazione", "value": "Colore e scala" }
-    ]
-  },
-  {
     "id": "3d-stand-v1",
     "name": "Stand modulare per scrivania",
     "slug": "stand-modulare-scrivania",
@@ -51,13 +9,22 @@
     "currency": "EUR",
     "url": "./product.html?id=3d-stand-v1",
     "image": "./assets/products/photos/3d-stand-v1-main.jpg",
-    "gallery": ["./assets/products/photos/3d-stand-v1-main.jpg"],
+    "gallery": [
+      "./assets/products/photos/3d-stand-v1-main.jpg"
+    ],
     "thumbClass": "thumb--img-stand",
     "thumbTypeClass": "thumb--3d",
     "cardTag": "3D",
     "badge": "Scrivania",
-    "badges": ["3D", "PETG", "Scrivania"],
-    "badgesStandard": ["best-seller", "custom"],
+    "badges": [
+      "3D",
+      "PETG",
+      "Scrivania"
+    ],
+    "badgesStandard": [
+      "best-seller",
+      "custom"
+    ],
     "featured": true,
     "featuredTag": "3D Studio",
     "available": true,
@@ -65,7 +32,10 @@
     "stockQty": 0,
     "leadTimeDays": 5,
     "sortOrder": 10,
-    "related": ["3d-gyro-v1", "3d-keycap-v1"],
+    "related": [
+      "3d-gyro-v1",
+      "3d-keycap-v1"
+    ],
     "cardDescription": "Supporto modulare per accessori: cavi, penne, piccoli tool.",
     "description": "Stand modulare stampato in 3D per organizzare la scrivania.",
     "lead": "Supporto modulare per accessori (cavi, penne, piccoli tool). Resistente e modulare.",
@@ -73,56 +43,44 @@
     "seoTitle": "Stand modulare da scrivania stampato 3D | Il Porto dei Pirati",
     "seoDescription": "Stand modulare stampato in 3D per accessori da scrivania, realizzato su richiesta.",
     "variants": [
-      { "key": "material", "label": "Materiale", "default": "PLA", "options": ["PLA", "PETG"] },
-      { "key": "color", "label": "Colore", "default": "Nero", "options": ["Nero", "Bianco", "Rosso", "Blu"] }
+      {
+        "key": "material",
+        "label": "Materiale",
+        "default": "PLA",
+        "options": [
+          "PLA",
+          "PETG"
+        ]
+      },
+      {
+        "key": "color",
+        "label": "Colore",
+        "default": "Nero",
+        "options": [
+          "Nero",
+          "Bianco",
+          "Rosso",
+          "Blu"
+        ]
+      }
     ],
     "specs": [
-      { "label": "Materiale", "value": "PETG" },
-      { "label": "Dimensioni", "value": "Base ~20 x 12 cm" },
-      { "label": "Uso", "value": "Scrivania, studio, laboratorio" },
-      { "label": "Personalizzazione", "value": "Moduli e colore" }
-    ]
-  },
-  {
-    "id": "3d-keycap-v1",
-    "name": "Keycap personalizzata",
-    "slug": "keycap-personalizzata-mx",
-    "category": "stampe-3d",
-    "categoryLabel": "Stampe 3D",
-    "price": 14,
-    "currency": "EUR",
-    "url": "./product.html?id=3d-keycap-v1",
-    "image": "./assets/products/photos/3d-keycap-v1-main.jpg",
-    "gallery": ["./assets/products/photos/3d-keycap-v1-main.jpg"],
-    "thumbClass": "thumb--img-keycap",
-    "thumbTypeClass": "thumb--3d",
-    "cardTag": "3D",
-    "badge": "Keycap",
-    "badges": ["3D", "PLA", "Keycap"],
-    "badgesStandard": ["custom"],
-    "featured": false,
-    "featuredTag": "3D Studio",
-    "available": true,
-    "status": "available",
-    "stockQty": 8,
-    "leadTimeDays": 3,
-    "sortOrder": 30,
-    "related": ["3d-stand-v1", "3d-gyro-v1"],
-    "cardDescription": "Keycap stampata in 3D (layout MX). Personalizzazione su richiesta.",
-    "description": "Keycap personalizzata per tastiere meccaniche compatibile switch MX.",
-    "lead": "Keycap stampata in 3D compatibile con switch tipo MX. Personalizzazione testo/simbolo.",
-    "details": "Keycap custom per tastiere meccaniche con scelta colore e finitura.",
-    "seoTitle": "Keycap personalizzata stampata 3D per tastiera MX | Il Porto dei Pirati",
-    "seoDescription": "Keycap personalizzata stampata in 3D, compatibile con switch MX e varianti colore.",
-    "variants": [
-      { "key": "material", "label": "Materiale", "default": "PLA", "options": ["PLA", "PETG"] },
-      { "key": "color", "label": "Colore", "default": "Nero", "options": ["Nero", "Bianco", "Rosso", "Blu"] }
-    ],
-    "specs": [
-      { "label": "Compatibilità", "value": "MX" },
-      { "label": "Materiale", "value": "PLA" },
-      { "label": "Profilo", "value": "Standard" },
-      { "label": "Personalizzazione", "value": "Testo, simbolo, colore" }
+      {
+        "label": "Materiale",
+        "value": "PETG"
+      },
+      {
+        "label": "Dimensioni",
+        "value": "Base ~20 x 12 cm"
+      },
+      {
+        "label": "Uso",
+        "value": "Scrivania, studio, laboratorio"
+      },
+      {
+        "label": "Personalizzazione",
+        "value": "Moduli e colore"
+      }
     ]
   },
   {
@@ -135,13 +93,22 @@
     "currency": "EUR",
     "url": "./product.html?id=print-seri-a2",
     "image": "./assets/products/photos/print-seri-a2-main.jpg",
-    "gallery": ["./assets/products/photos/print-seri-a2-main.jpg"],
+    "gallery": [
+      "./assets/products/photos/print-seri-a2-main.jpg"
+    ],
     "thumbClass": "thumb--img-seri-a2",
     "thumbTypeClass": "thumb--print",
     "cardTag": "PRINT",
     "badge": "Numerata",
-    "badges": ["PRINT", "A2", "Numerata"],
-    "badgesStandard": ["limited", "best-seller"],
+    "badges": [
+      "PRINT",
+      "A2",
+      "Numerata"
+    ],
+    "badgesStandard": [
+      "limited",
+      "best-seller"
+    ],
     "featured": true,
     "featuredTag": "Print Lab",
     "available": true,
@@ -149,7 +116,10 @@
     "stockQty": 4,
     "leadTimeDays": 2,
     "sortOrder": 15,
-    "related": ["print-poster-a3", "tee-logo-v1"],
+    "related": [
+      "print-poster-a3",
+      "tee-logo-v1"
+    ],
     "cardDescription": "Stampa serigrafica numerata. Carta premium.",
     "description": "Serigrafia A2 numerata in edizione limitata su carta premium.",
     "lead": "Stampa serigrafica numerata in tiratura limitata. Ideale per studio e collezione.",
@@ -157,56 +127,125 @@
     "seoTitle": "Serigrafia A2 in edizione limitata | Il Porto dei Pirati",
     "seoDescription": "Serigrafia A2 numerata in tiratura limitata su carta premium.",
     "variants": [
-      { "key": "format", "label": "Formato", "default": "A2", "options": ["A2"] },
-      { "key": "paper", "label": "Carta", "default": "Premium 300g", "options": ["Premium 300g", "Opaca 200g"] }
+      {
+        "key": "format",
+        "label": "Formato",
+        "default": "A2",
+        "options": [
+          "A2"
+        ]
+      },
+      {
+        "key": "paper",
+        "label": "Carta",
+        "default": "Premium 300g",
+        "options": [
+          "Premium 300g",
+          "Opaca 200g"
+        ]
+      }
     ],
     "specs": [
-      { "label": "Formato", "value": "A2" },
-      { "label": "Carta", "value": "Premium 200–300g" },
-      { "label": "Edizione", "value": "Numerata" },
-      { "label": "Spedizione", "value": "Tubo rigido (consigliato)" }
+      {
+        "label": "Formato",
+        "value": "A2"
+      },
+      {
+        "label": "Carta",
+        "value": "Premium 200–300g"
+      },
+      {
+        "label": "Edizione",
+        "value": "Numerata"
+      },
+      {
+        "label": "Spedizione",
+        "value": "Tubo rigido (consigliato)"
+      }
     ]
   },
   {
-    "id": "print-poster-a3",
-    "name": "Poster A3 — grafica studio",
-    "slug": "poster-a3-grafica-studio",
-    "category": "serigrafie-vestiti",
-    "categoryLabel": "Serigrafie & Vestiti",
-    "price": 18,
+    "id": "3d-gyro-v1",
+    "name": "Giroscopio decorativo — PLA",
+    "slug": "giroscopio-decorativo-pla",
+    "category": "stampe-3d",
+    "categoryLabel": "Stampe 3D",
+    "price": 19.9,
     "currency": "EUR",
-    "url": "./product.html?id=print-poster-a3",
-    "image": "./assets/products/photos/print-poster-a3-main.jpg",
-    "gallery": ["./assets/products/photos/print-poster-a3-main.jpg"],
-    "thumbClass": "thumb--img-poster-a3",
-    "thumbTypeClass": "thumb--print",
-    "cardTag": "PRINT",
-    "badge": "A3",
-    "badges": ["PRINT", "A3", "Studio"],
-    "badgesStandard": ["limited"],
+    "url": "./product.html?id=3d-gyro-v1",
+    "image": "./assets/products/photos/3d-gyro-v1-main.jpg",
+    "gallery": [
+      "./assets/products/photos/3d-gyro-v1-main.jpg"
+    ],
+    "thumbClass": "thumb--img-gyro",
+    "thumbTypeClass": "thumb--3d",
+    "cardTag": "3D",
+    "badge": "Decor",
+    "badges": [
+      "3D",
+      "PLA",
+      "Decor"
+    ],
+    "badgesStandard": [
+      "new",
+      "custom"
+    ],
     "featured": false,
-    "featuredTag": "Print Lab",
-    "available": false,
-    "status": "out-of-stock",
-    "stockQty": 0,
-    "leadTimeDays": 7,
-    "sortOrder": 40,
-    "related": ["print-seri-a2", "tee-logo-v1"],
-    "cardDescription": "Poster A3. Carta opaca 200g.",
-    "description": "Poster A3 con grafica originale su carta opaca 200g.",
-    "lead": "Poster A3 con grafica originale, stampa nitida e carta opaca da 200g.",
-    "details": "Poster A3 pensato per interni, studio o spazi creativi.",
-    "seoTitle": "Poster A3 grafica studio | Il Porto dei Pirati",
-    "seoDescription": "Poster A3 su carta opaca 200g con grafica originale.",
+    "featuredTag": "3D Studio",
+    "available": true,
+    "status": "available",
+    "stockQty": 12,
+    "leadTimeDays": 2,
+    "sortOrder": 20,
+    "related": [
+      "3d-stand-v1",
+      "3d-keycap-v1"
+    ],
+    "cardDescription": "Oggetto cinetico stampato in 3D. Vari colori su richiesta.",
+    "description": "Oggetto cinetico stampato in 3D per decorazione e scrivania.",
+    "lead": "Oggetto cinetico stampato in 3D, ideale come decorazione o pezzo da scrivania.",
+    "details": "Pezzo artigianale in PLA con personalizzazione colore e scala su richiesta.",
+    "seoTitle": "Giroscopio decorativo PLA stampato 3D | Il Porto dei Pirati",
+    "seoDescription": "Giroscopio decorativo stampato in 3D in PLA con vari colori e personalizzazione su richiesta.",
     "variants": [
-      { "key": "format", "label": "Formato", "default": "A3", "options": ["A3"] },
-      { "key": "paper", "label": "Carta", "default": "Opaca 200g", "options": ["Opaca 200g"] }
+      {
+        "key": "material",
+        "label": "Materiale",
+        "default": "PLA",
+        "options": [
+          "PLA",
+          "PETG"
+        ]
+      },
+      {
+        "key": "color",
+        "label": "Colore",
+        "default": "Nero",
+        "options": [
+          "Nero",
+          "Bianco",
+          "Rosso",
+          "Blu"
+        ]
+      }
     ],
     "specs": [
-      { "label": "Formato", "value": "A3" },
-      { "label": "Carta", "value": "Opaca 200g" },
-      { "label": "Finitura", "value": "Matte" },
-      { "label": "Spedizione", "value": "Piatta o tubo (in base a quantità)" }
+      {
+        "label": "Materiale",
+        "value": "PLA"
+      },
+      {
+        "label": "Dimensioni",
+        "value": "~8–10 cm (variabile)"
+      },
+      {
+        "label": "Finitura",
+        "value": "Layer visibili, post-process su richiesta"
+      },
+      {
+        "label": "Personalizzazione",
+        "value": "Colore e scala"
+      }
     ]
   },
   {
@@ -215,17 +254,24 @@
     "slug": "tshirt-serigrafata-logo",
     "category": "serigrafie-vestiti",
     "categoryLabel": "Serigrafie & Vestiti",
-    "price": 22,
+    "price": 22888.0,
     "currency": "EUR",
     "url": "./product.html?id=tee-logo-v1",
     "image": "./assets/products/photos/tee-logo-v1-main.jpg",
-    "gallery": ["./assets/products/photos/tee-logo-v1-main.jpg"],
+    "gallery": [
+      "./assets/products/photos/tee-logo-v1-main.jpg"
+    ],
     "thumbClass": "thumb--img-tee",
     "thumbTypeClass": "thumb--wear",
     "cardTag": "WEAR",
     "badge": "S–XL",
-    "badges": ["WEAR", "S–XL"],
-    "badgesStandard": ["best-seller"],
+    "badges": [
+      "WEAR",
+      "S–XL"
+    ],
+    "badgesStandard": [
+      "best-seller"
+    ],
     "featured": false,
     "featuredTag": "Wear",
     "available": true,
@@ -233,7 +279,10 @@
     "stockQty": 20,
     "leadTimeDays": 2,
     "sortOrder": 25,
-    "related": ["hoodie-v1", "print-seri-a2"],
+    "related": [
+      "hoodie-v1",
+      "print-seri-a2"
+    ],
     "cardDescription": "Cotone 100%. Taglie S–XL. Colori selezionabili.",
     "description": "T-shirt serigrafata in cotone 100% con vestibilità comoda.",
     "lead": "T-shirt in cotone con stampa serigrafica. Seleziona taglia e colore.",
@@ -241,14 +290,128 @@
     "seoTitle": "T-shirt serigrafata logo in cotone | Il Porto dei Pirati",
     "seoDescription": "T-shirt serigrafata in cotone, disponibile in taglie S-XL e più colori.",
     "variants": [
-      { "key": "size", "label": "Taglia", "default": "M", "options": ["S", "M", "L", "XL"] },
-      { "key": "color", "label": "Colore", "default": "Nero", "options": ["Nero", "Bianco"] }
+      {
+        "key": "size",
+        "label": "Taglia",
+        "default": "M",
+        "options": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ]
+      },
+      {
+        "key": "color",
+        "label": "Colore",
+        "default": "Nero",
+        "options": [
+          "Nero",
+          "Bianco"
+        ]
+      }
     ],
     "specs": [
-      { "label": "Taglie", "value": "S, M, L, XL" },
-      { "label": "Materiale", "value": "Cotone 100%" },
-      { "label": "Stampa", "value": "Serigrafia" },
-      { "label": "Cura", "value": "Lavaggio 30° al rovescio" }
+      {
+        "label": "Taglie",
+        "value": "S, M, L, XL"
+      },
+      {
+        "label": "Materiale",
+        "value": "Cotone 100%"
+      },
+      {
+        "label": "Stampa",
+        "value": "Serigrafia"
+      },
+      {
+        "label": "Cura",
+        "value": "Lavaggio 30° al rovescio"
+      }
+    ],
+    "published": true
+  },
+  {
+    "id": "3d-keycap-v1",
+    "name": "Keycap personalizzata",
+    "slug": "keycap-personalizzata-mx",
+    "category": "stampe-3d",
+    "categoryLabel": "Stampe 3D",
+    "price": 14,
+    "currency": "EUR",
+    "url": "./product.html?id=3d-keycap-v1",
+    "image": "./assets/products/photos/3d-keycap-v1-main.jpg",
+    "gallery": [
+      "./assets/products/photos/3d-keycap-v1-main.jpg"
+    ],
+    "thumbClass": "thumb--img-keycap",
+    "thumbTypeClass": "thumb--3d",
+    "cardTag": "3D",
+    "badge": "Keycap",
+    "badges": [
+      "3D",
+      "PLA",
+      "Keycap"
+    ],
+    "badgesStandard": [
+      "custom"
+    ],
+    "featured": false,
+    "featuredTag": "3D Studio",
+    "available": true,
+    "status": "available",
+    "stockQty": 8,
+    "leadTimeDays": 3,
+    "sortOrder": 30,
+    "related": [
+      "3d-stand-v1",
+      "3d-gyro-v1"
+    ],
+    "cardDescription": "Keycap stampata in 3D (layout MX). Personalizzazione su richiesta.",
+    "description": "Keycap personalizzata per tastiere meccaniche compatibile switch MX.",
+    "lead": "Keycap stampata in 3D compatibile con switch tipo MX. Personalizzazione testo/simbolo.",
+    "details": "Keycap custom per tastiere meccaniche con scelta colore e finitura.",
+    "seoTitle": "Keycap personalizzata stampata 3D per tastiera MX | Il Porto dei Pirati",
+    "seoDescription": "Keycap personalizzata stampata in 3D, compatibile con switch MX e varianti colore.",
+    "variants": [
+      {
+        "key": "material",
+        "label": "Materiale",
+        "default": "PLA",
+        "options": [
+          "PLA",
+          "PETG"
+        ]
+      },
+      {
+        "key": "color",
+        "label": "Colore",
+        "default": "Nero",
+        "options": [
+          "Nero",
+          "Bianco",
+          "Rosso",
+          "Blu"
+        ]
+      }
+    ],
+    "specs": [
+      {
+        "label": "Compatibilità",
+        "value": "MX"
+      },
+      {
+        "label": "Materiale",
+        "value": "PLA"
+      },
+      {
+        "label": "Profilo",
+        "value": "Standard"
+      },
+      {
+        "label": "Personalizzazione",
+        "value": "Testo, simbolo, colore"
+      }
     ]
   },
   {
@@ -261,13 +424,21 @@
     "currency": "EUR",
     "url": "./product.html?id=hoodie-v1",
     "image": "./assets/products/photos/hoodie-v1-main.jpg",
-    "gallery": ["./assets/products/photos/hoodie-v1-main.jpg"],
+    "gallery": [
+      "./assets/products/photos/hoodie-v1-main.jpg"
+    ],
     "thumbClass": "thumb--img-hoodie",
     "thumbTypeClass": "thumb--wear",
     "cardTag": "WEAR",
     "badge": "S–XL",
-    "badges": ["WEAR", "S–XL", "Patch"],
-    "badgesStandard": ["new"],
+    "badges": [
+      "WEAR",
+      "S–XL",
+      "Patch"
+    ],
+    "badgesStandard": [
+      "new"
+    ],
     "featured": true,
     "featuredTag": "Wear",
     "available": false,
@@ -275,7 +446,10 @@
     "stockQty": 0,
     "leadTimeDays": 10,
     "sortOrder": 35,
-    "related": ["tee-logo-v1", "print-seri-a2"],
+    "related": [
+      "tee-logo-v1",
+      "print-seri-a2"
+    ],
     "cardDescription": "Felpa pesante con stampa frontale. Taglie S–XL.",
     "description": "Felpa pesante con patch serigrafata e vestibilità comoda.",
     "lead": "Felpa pesante con stampa frontale e patch serigrafata ad alta tenuta.",
@@ -283,14 +457,123 @@
     "seoTitle": "Felpa serigrafata con patch | Il Porto dei Pirati",
     "seoDescription": "Felpa con patch serigrafata, in arrivo, con taglie S-XL.",
     "variants": [
-      { "key": "size", "label": "Taglia", "default": "M", "options": ["S", "M", "L", "XL"] },
-      { "key": "color", "label": "Colore", "default": "Nero", "options": ["Nero", "Grigio"] }
+      {
+        "key": "size",
+        "label": "Taglia",
+        "default": "M",
+        "options": [
+          "S",
+          "M",
+          "L",
+          "XL"
+        ]
+      },
+      {
+        "key": "color",
+        "label": "Colore",
+        "default": "Nero",
+        "options": [
+          "Nero",
+          "Grigio"
+        ]
+      }
     ],
     "specs": [
-      { "label": "Taglie", "value": "S, M, L, XL" },
-      { "label": "Materiale", "value": "Cotone misto pesante" },
-      { "label": "Stampa", "value": "Serigrafia frontale" },
-      { "label": "Cura", "value": "Lavaggio 30° al rovescio" }
+      {
+        "label": "Taglie",
+        "value": "S, M, L, XL"
+      },
+      {
+        "label": "Materiale",
+        "value": "Cotone misto pesante"
+      },
+      {
+        "label": "Stampa",
+        "value": "Serigrafia frontale"
+      },
+      {
+        "label": "Cura",
+        "value": "Lavaggio 30° al rovescio"
+      }
+    ]
+  },
+  {
+    "id": "print-poster-a3",
+    "name": "Poster A3 — grafica studio",
+    "slug": "poster-a3-grafica-studio",
+    "category": "serigrafie-vestiti",
+    "categoryLabel": "Serigrafie & Vestiti",
+    "price": 18,
+    "currency": "EUR",
+    "url": "./product.html?id=print-poster-a3",
+    "image": "./assets/products/photos/print-poster-a3-main.jpg",
+    "gallery": [
+      "./assets/products/photos/print-poster-a3-main.jpg"
+    ],
+    "thumbClass": "thumb--img-poster-a3",
+    "thumbTypeClass": "thumb--print",
+    "cardTag": "PRINT",
+    "badge": "A3",
+    "badges": [
+      "PRINT",
+      "A3",
+      "Studio"
+    ],
+    "badgesStandard": [
+      "limited"
+    ],
+    "featured": false,
+    "featuredTag": "Print Lab",
+    "available": false,
+    "status": "out-of-stock",
+    "stockQty": 0,
+    "leadTimeDays": 7,
+    "sortOrder": 40,
+    "related": [
+      "print-seri-a2",
+      "tee-logo-v1"
+    ],
+    "cardDescription": "Poster A3. Carta opaca 200g.",
+    "description": "Poster A3 con grafica originale su carta opaca 200g.",
+    "lead": "Poster A3 con grafica originale, stampa nitida e carta opaca da 200g.",
+    "details": "Poster A3 pensato per interni, studio o spazi creativi.",
+    "seoTitle": "Poster A3 grafica studio | Il Porto dei Pirati",
+    "seoDescription": "Poster A3 su carta opaca 200g con grafica originale.",
+    "variants": [
+      {
+        "key": "format",
+        "label": "Formato",
+        "default": "A3",
+        "options": [
+          "A3"
+        ]
+      },
+      {
+        "key": "paper",
+        "label": "Carta",
+        "default": "Opaca 200g",
+        "options": [
+          "Opaca 200g"
+        ]
+      }
+    ],
+    "specs": [
+      {
+        "label": "Formato",
+        "value": "A3"
+      },
+      {
+        "label": "Carta",
+        "value": "Opaca 200g"
+      },
+      {
+        "label": "Finitura",
+        "value": "Matte"
+      },
+      {
+        "label": "Spedizione",
+        "value": "Piatta o tubo (in base a quantità)"
+      }
     ]
   }
 ]

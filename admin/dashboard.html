@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin | Il Porto dei Pirati</title>
+  <link rel="stylesheet" href="./admin.css" />
+</head>
+<body class="admin-body">
+  <header class="admin-topbar">
+    <div>
+      <p class="admin-kicker">Dashboard custom</p>
+      <h1>Gestione shop</h1>
+    </div>
+    <div class="admin-topbar__actions">
+      <span class="admin-user" id="adminUserLabel"></span>
+      <button class="admin-btn" id="adminLogoutBtn" type="button">Esci</button>
+    </div>
+  </header>
+
+  <main class="admin-layout">
+    <section class="admin-section">
+      <div class="admin-section__head">
+        <div>
+          <h2>Prodotti</h2>
+          <p class="admin-muted">Inserimento e modifica prodotti esistenti.</p>
+        </div>
+        <button class="admin-btn admin-btn--primary" id="newProductBtn" type="button">Nuovo prodotto</button>
+      </div>
+
+      <div class="admin-grid">
+        <aside class="admin-list" id="productList"></aside>
+
+        <form class="admin-panel admin-form admin-editor" id="productForm">
+          <input type="hidden" name="isNewRecord" value="true" />
+          <div class="admin-form__grid">
+            <label class="admin-field">
+              <span>Identificativo</span>
+              <input type="text" name="id" required />
+            </label>
+            <label class="admin-field">
+              <span>Slug</span>
+              <input type="text" name="slug" required />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Nome prodotto</span>
+              <input type="text" name="name" required />
+            </label>
+            <label class="admin-field">
+              <span>Categoria</span>
+              <select name="category">
+                <option value="stampe-3d">Stampe 3D</option>
+                <option value="serigrafie-vestiti">Serigrafie &amp; Vestiti</option>
+              </select>
+            </label>
+            <label class="admin-field">
+              <span>Prezzo</span>
+              <input type="number" name="price" min="0" step="0.01" required />
+            </label>
+            <label class="admin-field">
+              <span>Stato</span>
+              <select name="status">
+                <option value="available">Disponibile</option>
+                <option value="made-to-order">Su richiesta</option>
+                <option value="out-of-stock">Esaurito</option>
+                <option value="coming-soon">In arrivo</option>
+              </select>
+            </label>
+            <label class="admin-field">
+              <span>Stock</span>
+              <input type="number" name="stockQty" min="0" step="1" />
+            </label>
+            <label class="admin-field">
+              <span>Lead time giorni</span>
+              <input type="number" name="leadTimeDays" min="0" step="1" />
+            </label>
+            <label class="admin-field">
+              <span>Ordine</span>
+              <input type="number" name="sortOrder" step="1" />
+            </label>
+            <label class="admin-field admin-field--checkbox">
+              <input type="checkbox" name="published" />
+              <span>Pubblicato</span>
+            </label>
+            <label class="admin-field admin-field--checkbox">
+              <input type="checkbox" name="featured" />
+              <span>In evidenza</span>
+            </label>
+            <label class="admin-field admin-field--checkbox">
+              <input type="checkbox" name="available" />
+              <span>Acquistabile</span>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Immagine principale</span>
+              <input type="text" name="image" required />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Galleria immagini (una per riga)</span>
+              <textarea name="gallery" rows="4"></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Descrizione breve</span>
+              <textarea name="cardDescription" rows="2" required></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Descrizione breve</span>
+              <textarea name="description" rows="2"></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Lead</span>
+              <textarea name="lead" rows="2"></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Descrizione lunga</span>
+              <textarea name="details" rows="4"></textarea>
+            </label>
+            <label class="admin-field">
+              <span>Badge principale</span>
+              <input type="text" name="badge" />
+            </label>
+            <label class="admin-field">
+              <span>Badge testuali (separati da virgola)</span>
+              <input type="text" name="badges" />
+            </label>
+            <label class="admin-field">
+              <span>Badge standard (separati da virgola)</span>
+              <input type="text" name="badgesStandard" />
+            </label>
+            <label class="admin-field">
+              <span>Prodotti correlati (ID separati da virgola)</span>
+              <input type="text" name="related" />
+            </label>
+            <label class="admin-field">
+              <span>Thumb class</span>
+              <input type="text" name="thumbClass" />
+            </label>
+            <label class="admin-field">
+              <span>Thumb type class</span>
+              <input type="text" name="thumbTypeClass" />
+            </label>
+            <label class="admin-field">
+              <span>Card tag</span>
+              <input type="text" name="cardTag" />
+            </label>
+            <label class="admin-field">
+              <span>Featured tag</span>
+              <input type="text" name="featuredTag" />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>SEO title</span>
+              <input type="text" name="seoTitle" />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>SEO description</span>
+              <textarea name="seoDescription" rows="2"></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Specifiche tecniche (una per riga: Etichetta: Valore)</span>
+              <textarea name="specs" rows="5"></textarea>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Varianti avanzate (JSON array)</span>
+              <textarea name="variants" rows="7"></textarea>
+            </label>
+          </div>
+
+          <div class="admin-actions">
+            <button class="admin-btn admin-btn--primary" type="submit">Salva prodotto</button>
+            <p class="admin-feedback" id="productFeedback" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="admin-section">
+      <div class="admin-section__head">
+        <div>
+          <h2>Rotta del mese / Eventi</h2>
+          <p class="admin-muted">Contenuti usati nella sezione eventi della home.</p>
+        </div>
+        <button class="admin-btn admin-btn--primary" id="newEventBtn" type="button">Nuovo evento</button>
+      </div>
+
+      <div class="admin-grid">
+        <aside class="admin-list" id="eventList"></aside>
+
+        <form class="admin-panel admin-form admin-editor" id="eventForm">
+          <input type="hidden" name="isNewRecord" value="true" />
+          <div class="admin-form__grid">
+            <label class="admin-field">
+              <span>Identificativo</span>
+              <input type="text" name="id" required />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Titolo</span>
+              <input type="text" name="title" required />
+            </label>
+            <label class="admin-field">
+              <span>Data breve</span>
+              <input type="text" name="dateLabel" placeholder="12 Apr" />
+            </label>
+            <label class="admin-field">
+              <span>Periodo / meta</span>
+              <input type="text" name="period" placeholder="18:30 • Spazio Porto" />
+            </label>
+            <label class="admin-field">
+              <span>Stato</span>
+              <input type="text" name="status" placeholder="Aperto" />
+            </label>
+            <label class="admin-field">
+              <span>Ordine</span>
+              <input type="number" name="sortOrder" step="1" />
+            </label>
+            <label class="admin-field admin-field--checkbox">
+              <input type="checkbox" name="published" />
+              <span>Pubblicato</span>
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Immagine</span>
+              <input type="text" name="image" />
+            </label>
+            <label class="admin-field admin-field--wide">
+              <span>Descrizione</span>
+              <textarea name="description" rows="4"></textarea>
+            </label>
+            <label class="admin-field">
+              <span>CTA label</span>
+              <input type="text" name="ctaLabel" />
+            </label>
+            <label class="admin-field">
+              <span>CTA URL</span>
+              <input type="text" name="ctaUrl" />
+            </label>
+          </div>
+
+          <div class="admin-actions">
+            <button class="admin-btn admin-btn--primary" type="submit">Salva evento</button>
+            <p class="admin-feedback" id="eventFeedback" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="./dashboard.js"></script>
+</body>
+</html>

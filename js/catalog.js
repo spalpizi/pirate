@@ -1,4 +1,6 @@
 (function () {
+  if (window.__BP_CATALOG_INITIALIZED__) return;
+  window.__BP_CATALOG_INITIALIZED__ = true;
   const DATA_URL = "./data/products.json";
 
   const STATUS_META = {
@@ -57,12 +59,22 @@
     return "available";
   }
 
+  function isPublicProduct(product) {
+    return !!product && product.published !== false;
+  }
+
   function statusInfo(product) {
     return STATUS_META[normalizeStatus(product)] || STATUS_META.available;
   }
 
   function productLink(product) {
     return product.url || `./product.html?id=${encodeURIComponent(product.id || "")}`;
+  }
+
+  function mediaStyleAttr(image) {
+    const src = String(image || "").trim();
+    if (!src) return "";
+    return ` style="background-image: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.02)), url('${escapeHtml(src)}');"`;
   }
 
   function isFiniteNumber(v) {
@@ -206,7 +218,7 @@
     return `
       <article class="card">
         <a href="${escapeHtml(link)}" aria-label="Apri ${escapeHtml(name)}">
-          <div class="thumb ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}"><span class="tag">${escapeHtml(cardTag)}</span></div>
+          <div class="thumb ${escapeHtml(thumbTypeClass)} ${escapeHtml(thumbClass)}"${mediaStyleAttr(product.image)}><span class="tag">${escapeHtml(cardTag)}</span></div>
         </a>
         <h3 class="card__title"><a href="${escapeHtml(link)}">${escapeHtml(name)}</a></h3>
         <p class="card__desc">${escapeHtml(desc)}</p>
@@ -240,7 +252,7 @@
 
     return `
       <article class="${cardClass}">
-        <a class="editorial-card__media ${mediaClass}" href="${escapeHtml(link)}" aria-label="Apri ${escapeHtml(name)}"></a>
+        <a class="editorial-card__media ${mediaClass}" href="${escapeHtml(link)}" aria-label="Apri ${escapeHtml(name)}"${mediaStyleAttr(product.image)}></a>
         <div class="editorial-card__body">
           <span class="editorial-card__tag">${escapeHtml(featuredTag)}</span>
           <h3>${escapeHtml(name)}</h3>
@@ -258,7 +270,7 @@
     `;
   }
 
-  function buildFiltersUI(state, facets, priceBand) {
+  function buildFiltersUI(facets, priceBand) {
     const variantFiltersHtml = facets.variants.map((v) => {
       return `
         <div class="field field--compact">
@@ -334,8 +346,10 @@
 
     const toolsWrap = document.createElement("div");
     toolsWrap.className = "catalog-tools-host";
-    toolsWrap.innerHTML = buildFiltersUI(state, facets, priceBand);
-    container.parentNode.insertBefore(toolsWrap, container);
+    toolsWrap.innerHTML = buildFiltersUI(facets, priceBand);
+    if (container.parentNode) {
+      container.parentNode.insertBefore(toolsWrap, container);
+    }
 
     const summaryEl = toolsWrap.querySelector("[data-filter-summary]");
 
@@ -436,9 +450,10 @@
 
   const loadedProducts = loadProductsSync(DATA_URL);
   const products = loadedProducts.length ? loadedProducts : FALLBACK_PRODUCTS;
+  const publicProducts = products.filter(isPublicProduct);
 
   // Keep product data globally available for script.js and product-page.js.
-  window.__PRODUCTS_DATA = products.map((p, idx) => ({ ...p, __index: idx }));
+  window.__PRODUCTS_DATA = publicProducts.map((p, idx) => ({ ...p, __index: idx }));
 
   document.addEventListener("DOMContentLoaded", () => {
     const list = Array.isArray(window.__PRODUCTS_DATA) ? window.__PRODUCTS_DATA : [];

@@ -1,4 +1,6 @@
 (function () {
+  if (window.__BP_CATEGORY_PAGE_INITIALIZED__) return;
+  window.__BP_CATEGORY_PAGE_INITIALIZED__ = true;
   const DEFAULT_CATEGORY_ID = "stampe-3d";
 
   function escapeHtml(str) {
